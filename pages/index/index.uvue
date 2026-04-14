@@ -1,0 +1,100 @@
+<template>
+  <view class="container">
+    <view class="bg-decoration">
+		<image class="bg" src="/static/red.jpg" mode="aspectFill"></image>
+	</view>
+    <view class="grid-container">
+      <view class="card-item" v-for="(item, index) in list" :key="index" @click="goDetail(item)">
+        <image :src="item.avatar" class="avatar" mode="aspectFill"></image>
+        <view class="name-bar">
+          <text class="name-text">姓名: {{ item.name }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      // 列表只展示姓名，职位、电话存在数据里，不显示
+      list: [
+        { name: '郑仕金', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '孔超', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '张开翼', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '阿力亚', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '艾沙江·尼扎木丁', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '巴音吉尔更', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '胡浩', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '木沙江·阿洪巴依', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+        { name: '努尔塔依·努尔买买提', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+		    { name: '木沙江·阿洪巴依', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' },
+		    { name: '努尔塔依·努尔买买提', avatar: '/static/女.png', job: '博州宜居物业公司职工', phone: '135655512920' }
+      ]
+    };
+  },
+  methods: {
+    goDetail(item) {
+      // 跳转时传递：姓名 + 头像 + 职位 + 电话
+      uni.navigateTo({
+        url: `/pages/detail/detail?name=${encodeURIComponent(item.name)}&avatar=${encodeURIComponent(item.avatar)}&job=${encodeURIComponent(item.job)}&phone=${encodeURIComponent(item.phone)}`
+      });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.container {
+  width: 100%;
+  min-height: 100vh;
+  
+  box-sizing: border-box;
+  position: relative;
+}
+.bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.bg{
+	width: 100%;
+	height: 100%;
+}
+.grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8rpx;
+      padding: 120rpx 32rpx;
+      flex-direction: row;
+      justify-content: space-between;
+}
+.card-item {
+  width: calc(32% - 4rpx);
+  margin-bottom: 120rpx;
+  background: red;
+  padding: 12rpx;
+  box-sizing: border-box;
+}
+.avatar {
+  width: 100%;
+  height: 300rpx;
+  background: #00a8ff;
+}
+.name-bar {
+  background: red;
+  padding: 12rpx 0 0;
+  text-align: center;
+}
+.name-text {
+  font-size: 24rpx;
+  color: #fff;
+   font-weight: 600;
+   font-family: "PingFang SC";
+   line-height: 36rpx;
+}
+</style>
